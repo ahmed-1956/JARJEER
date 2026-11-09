@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx React.createElement */
-
 "use client";
 
 import * as React from "react";
