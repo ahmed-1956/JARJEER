@@ -1,11 +1,14 @@
-"use client"
+/** @jsxRuntime classic */
+/** @jsx React.createElement */
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { motion } from "motion/react"
+"use client";
+
+import * as React from "react";
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "motion/react";
 import {
-  LandmarkIcon,
   MailIcon,
   LockIcon,
   EyeIcon,
@@ -14,20 +17,28 @@ import {
   CheckIcon,
   ShieldCheckIcon,
   UserIcon,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupButton,
-} from "@/components/ui/input-group"
-import dynamic from "next/dynamic"
+} from "@/components/ui/input-group";
+import dynamic from "next/dynamic";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elementName: string]: any;
+    }
+  }
+}
 
 const GlobeDemo = dynamic(() => import("@/components/globe-demo"), {
   ssr: false,
-})
+});
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -35,7 +46,7 @@ const containerVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.06, delayChildren: 0.1 },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 12 },
@@ -47,37 +58,44 @@ const itemVariants = {
       ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     },
   },
-}
+};
 
 export default function SignUpPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [agreed, setAgreed] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [agreed, setAgreed] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!agreed) return
-    setIsLoading(true)
+    e.preventDefault();
+    if (!agreed) return;
+    setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(false)
-      setIsSuccess(true)
-      setTimeout(() => setIsSuccess(false), 2000)
-    }, 1500)
-  }
+      setIsLoading(false);
+      setIsSuccess(true);
+      setTimeout(() => setIsSuccess(false), 2000);
+    }, 1500);
+  };
 
   return (
     <div className="flex min-h-svh">
       {/* Left panel - Globe */}
       <div className="relative hidden w-1/2 flex-col justify-between bg-zinc-950 lg:flex">
         {/* Logo */}
-        <Link href="/dashboard" className="relative z-20 flex items-center gap-2.5 p-8">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-white text-black">
-            <LandmarkIcon className="size-4" />
+        <Link
+          href="/dashboard"
+          className="relative z-20 flex items-center gap-2.5 p-8"
+        >
+          <div className="flex size-8 items-center justify-center overflow-hidden rounded-lg">
+            <Image
+              src="/icon.svg"
+              alt="JARJEER"
+              width={32}
+              height={32}
+              className="size-8 object-contain"
+            />
           </div>
-          <span className="text-sm font-semibold text-white">
-            JARJEER
-          </span>
+          <span className="text-sm font-semibold text-white">JARJEER</span>
         </Link>
 
         {/* Globe */}
@@ -112,8 +130,14 @@ export default function SignUpPage() {
             className="mb-8 flex flex-col items-center lg:hidden"
             variants={itemVariants}
           >
-            <div className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-              <LandmarkIcon className="size-5" />
+            <div className="flex size-10 items-center justify-center overflow-hidden rounded-xl">
+              <Image
+                src="/icon.svg"
+                alt="JARJEER"
+                width={40}
+                height={40}
+                className="size-10 object-contain"
+              />
             </div>
           </motion.div>
 
@@ -230,7 +254,9 @@ export default function SignUpPage() {
                     size="icon-xs"
                     variant="ghost"
                     onClick={() => setShowPassword(!showPassword)}
-                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
                   >
                     {showPassword ? (
                       <EyeOffIcon className="size-3.5 text-muted-foreground" />
@@ -249,7 +275,9 @@ export default function SignUpPage() {
               <Checkbox
                 id="terms"
                 checked={agreed}
-                onCheckedChange={(checked) => setAgreed(checked)}
+                onCheckedChange={(checked: boolean | "indeterminate") =>
+                  setAgreed(checked === true)
+                }
                 className="mt-0.5"
               />
               <label htmlFor="terms" className="text-sm text-muted-foreground">
@@ -319,5 +347,5 @@ export default function SignUpPage() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

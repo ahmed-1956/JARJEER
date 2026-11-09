@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "motion/react"
 import {
-  LandmarkIcon,
   MailIcon,
   LockIcon,
   EyeIcon,
@@ -68,9 +67,15 @@ export default function SignInPage() {
       <div className="relative hidden w-1/2 flex-col justify-between bg-zinc-950 lg:flex">
         {/* Logo */}
         <Link href="/dashboard" className="relative z-20 flex items-center gap-2.5 p-8">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-white text-black">
-            <LandmarkIcon className="size-4" />
-          </div>
+          <div className="flex size-8 items-center justify-center overflow-hidden rounded-lg">
+              <Image
+                  src="/icon.svg"
+                      alt="JARJEER"
+                          width={32}
+                              height={32}
+                                  className="size-8 object-contain"
+                                    />
+                                    </div>
           <span className="text-sm font-semibold text-white">
             JARJEER
           </span>
@@ -108,9 +113,15 @@ export default function SignInPage() {
             className="mb-8 flex flex-col items-center lg:hidden"
             variants={itemVariants}
           >
-            <div className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-              <LandmarkIcon className="size-5" />
-            </div>
+            <div className="flex size-10 items-center justify-center overflow-hidden rounded-xl">
+                <Image
+                    src="/icon.svg"
+                        alt="JARJEER"
+                            width={40}
+                                height={40}
+                                    className="size-10 object-contain"
+                                      />
+                                      </div>
           </motion.div>
 
           {/* Heading */}
