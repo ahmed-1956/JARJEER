@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shadcn-fintech.vercel.app"),
+  metadataBase: new URL("https://jarjeer.vercel.app"),
   title: "JARJEER",
   description:
     "JARJEER is a modern fintech dashboard featuring financial analytics, account management, transactions, investments, and interactive data visualizations.",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description:
       "JARJEER is a modern fintech dashboard featuring financial analytics, account management, transactions, investments, and interactive data visualizations.",
     type: "website",
-    url: "https://shadcn-fintech.vercel.app",
+    url: "https://jarjeer.vercel.app",
     images: [{ url: "/screenshots/JARJEER.jpg", width: 1200, height: 644 }],
   },
   twitter: {
